@@ -102,14 +102,34 @@
 
     <p class="attention"><span class="red bold">Atenção:</span> Vagas Limitadas (apenas um grupo). Garanta a sua agora 👇</p>
 
-    <!-- Substitua o href pelo link do seu grupo WhatsApp -->
-    <a class="cta" href="https://chat.whatsapp.com/GRbDLb2W4006s7DWgH3Hyk?mode=wwt" target="_blank" rel="noopener noreferrer">
+    <!-- Substitua o href abaixo pelo link do seu grupo WhatsApp, se necessário -->
+    <a id="joinBtn" class="cta" href="https://chat.whatsapp.com/GRbDLb2W4006s7DWgH3Hyk">
       <span class="wh">📱</span>
       ENTRAR NO GRUPO!<br>WHATSAPP
     </a>
 
+    <script>
+      // Tenta abrir o link diretamente no app (window.location) para dar maior chance de abrir o WhatsApp.
+      // Caso contrário, faz fallback para abrir em nova aba.
+      (function(){
+        var btn = document.getElementById('joinBtn');
+        if(!btn) return;
+        var link = btn.getAttribute('href');
+        btn.addEventListener('click', function(e){
+          // evita comportamento padrão para controlar o fluxo
+          e.preventDefault();
+
+          // 1) Tenta redirecionar na mesma aba — em dispositivos móveis isso normalmente abre o app
+          try{ window.location.href = link; }catch(err){}
+
+          // 2) Em casos onde o navegador bloqueia, abre em nova aba após um micro delay
+          setTimeout(function(){
+            try{ window.open(link, '_blank'); }catch(err){}
+          }, 250);
+        }, false);
+      })();
+    </script>
+
   </div>
 </body>
 </html>
-
-
