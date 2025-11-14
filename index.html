@@ -75,9 +75,21 @@
   </head>
   <body>
     <div class="container" role="main" aria-labelledby="pageTitle">
-      <div class="logo-wrap">
-        <!-- Recomendo substituir src pelo seu logo otimizado (webp/png). -->
-        <img class="logo" src="/mnt/data/WhatsApp Image 2025-11-13 at 14.52.03.jpeg" alt="Logo do grupo" loading="lazy">
+      <div class="logo-wrap" aria-hidden="true">
+        <!-- Logo inline: evita dependência de arquivo externo no repositório -->
+        <svg class="logo" viewBox="0 0 120 120" role="img" aria-label="Logo do grupo" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#25D366" />
+              <stop offset="1" stop-color="#128C7E" />
+            </linearGradient>
+          </defs>
+          <rect width="120" height="120" rx="24" fill="url(#g)" />
+          <g transform="translate(22,22) scale(0.7)" fill="#fff">
+            <path d="M45.6 10.2c-18.5 0-33.6 15.1-33.6 33.6 0 5.9 1.5 11.6 4.5 16.6L9 61.2l1.8 10.8 10.8-3.6c4.6 2.4 9.9 3.6 15.6 3.6 18.5 0 33.6-15.1 33.6-33.6S64.1 10.2 45.6 10.2z"/>
+            <path d="M33.6 34.8c-1.2 0-2.4.1-3.6.4-2 .5-3.6 1.6-4.7 3.3-.9 1.4-1.3 3.1-1 4.8.6 3.9 3.9 7.1 8 8.2 1.7.4 3.6.6 5.4.6 1.3 0 2.6-.1 3.9-.4 1.2-.3 2.3-.7 3.3-1.3 1-.5 1.9-1.2 2.7-2 .6-.6.9-1.4.9-2.3 0-1-.4-1.9-1.1-2.6-.7-.7-1.6-1-2.6-1-1.1 0-2.2.3-3.1.8-.6.4-1.4.6-2 .6-.7 0-1.4-.1-2-.4-1.2-.6-2-1.7-2.4-3-.2-.5-.3-1.1-.3-1.6 0-1.1.4-2.2 1-3.1.6-.9 1.5-1.6 2.6-2 .9-.3 1.9-.5 2.9-.5 1.1 0 2.1.2 3.1.6.8.3 1.9.8 2.5 1.2.4.3.8.7 1.1 1.1.3.4.4.8.4 1.3 0 .9-.4 1.7-1 2.4-.6.6-1.5 1-2.4 1.2-.7.1-1.4.2-2.1.2z"/>
+          </g>
+        </svg>
       </div>
 
       <h1 id="pageTitle">GRUPO DE CUPONS E PROMOÇÕES 100% GRATUITO</h1>
