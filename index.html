@@ -92,8 +92,9 @@
         </svg>
       </div>
 
-      <h1 id="pageTitle">GRUPO DE CUPONS E PROMOÇÕES</h1>
-      <p class="lead">Entre no nosso grupo do WhatsApp para receber ofertas em primeira mão.</p>
+  <h1 id="pageTitle">GRUPO DE CUPONS E PROMOÇÕES 100% GRATUITO</h1>
+  <p class="lead">Lançamos nosso grupo de alertas de promoções <strong>ABSURDAS</strong> — é 100% gratuito para quem conseguir uma vaga.</p>
+  <p class="attention"><strong>Atenção:</strong> Vagas Limitadas. Garanta a sua agora 👇</p>
 
       <!-- Primary CTA em destaque central (único botão) -->
       <div style="margin-top:18px;display:flex;justify-content:center;">
@@ -102,6 +103,8 @@
           <span id="ctaText">ENTRAR AGORA</span>
         </button>
       </div>
+
+      <div id="helper" class="helper" aria-hidden="true"></div>
     </div>
 
     <script>
@@ -115,10 +118,8 @@
         function handleJoin(){
           try{
             if(isMobile()){
-              // Mobile: abrir diretamente (provavel que abra o app)
               window.location.href = INVITE;
             } else {
-              // Desktop: abrir em nova aba (WhatsApp Web)
               window.open(INVITE, '_blank', 'noopener');
             }
           }catch(e){
@@ -126,13 +127,29 @@
           }
         }
 
+        function adaptUI(){
+          const ctaText = document.getElementById('ctaText');
+          const helper = document.getElementById('helper');
+          if(isMobile()){
+            ctaText.textContent = 'ABRIR NO WHATSAPP';
+            helper.textContent = 'Será aberto o app do WhatsApp no seu celular.';
+            helper.setAttribute('aria-hidden','false');
+          } else {
+            ctaText.textContent = 'ABRIR NO WHATSAPP WEB';
+            helper.textContent = 'No desktop, o WhatsApp Web será aberto (faça login se necessário).';
+            helper.setAttribute('aria-hidden','false');
+          }
+        }
+
         document.addEventListener('DOMContentLoaded', function(){
           const joinBtn = document.getElementById('joinBtn');
+          adaptUI();
           joinBtn.addEventListener('click', function(e){
             e.preventDefault();
             handleJoin();
           });
           joinBtn.addEventListener('keyup', function(e){ if(e.key === 'Enter' || e.key === ' ') handleJoin(); });
+          window.addEventListener('resize', adaptUI);
         });
       })();
     </script>
