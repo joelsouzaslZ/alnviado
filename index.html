@@ -3,29 +3,191 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Entrando — Grupo WhatsApp</title>
-    <meta name="robots" content="noindex">
-    <!-- Redireciona imediatamente para o arquivo principal -->
-    <meta http-equiv="refresh" content="0; url=grupowhatsapp.html">
+    <title>Entrar no Grupo - WhatsApp</title>
+    <meta name="description" content="Página de convite para grupo do WhatsApp - abra direto no app em dispositivos móveis." />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-      body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#f6f4ef}
-      .msg{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.06);max-width:420px;text-align:center}
+      :root{
+        --bg:#f6f4ef;
+        --card:#ffffff;
+        --muted:#6b6b6b;
+        --accent:#25D366; /* whatsapp green */
+        --accent-dark:#128C7E;
+        --radius:14px;
+        --max-width:720px;
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%;}
+      body{
+        margin:0;
+        font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+        background:linear-gradient(180deg,var(--bg),#efece0);
+        display:flex;align-items:center;justify-content:center;padding:20px;
+        -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      }
+
+      /* Container */
+      .container{
+        width:100%;max-width:var(--max-width);background:var(--card);
+        border-radius:calc(var(--radius) + 4px);box-shadow:0 12px 30px rgba(10,10,10,0.08);
+        padding:28px;text-align:center;overflow:hidden;
+        transform:translateY(6px);opacity:0;animation:enter .6s cubic-bezier(.2,.9,.2,1) forwards;
+      }
+      @keyframes enter{to{transform:none;opacity:1}}
+
+      .logo-wrap{display:flex;justify-content:center}
+      .logo{width:110px;height:110px;border-radius:999px;display:block;object-fit:cover;margin:0 auto 14px}
+
+      h1{margin:6px 0 10px;font-size:22px;line-height:1.05;color:#0b2a18;font-weight:800}
+      p.lead{margin:8px 0 14px;font-size:15px;color:var(--muted);line-height:1.5}
+      p.lead strong{color:#000}
+      .attention{font-size:15px;margin:14px 0;color:#111}
+
+      /* CTA */
+      .cta{display:inline-flex;align-items:center;gap:12px;padding:14px 18px;border-radius:12px;background:linear-gradient(180deg,var(--accent),var(--accent-dark));color:white;font-weight:800;font-size:18px;border:0;text-decoration:none;cursor:pointer;box-shadow:0 8px 20px rgba(37,211,102,0.18);transition:transform .16s ease,box-shadow .16s ease}
+      .cta:active{transform:scale(.98)}
+      .cta:focus{outline:3px solid rgba(37,211,102,0.18);outline-offset:4px}
+
+      /* small actions */
+      .actions{display:flex;gap:10px;justify-content:center;margin-top:12px}
+      .btn-ghost{background:transparent;border:1px solid #e6e6e6;padding:10px 12px;border-radius:10px;font-weight:600;cursor:pointer}
+
+      /* helper text for desktop */
+      .helper{font-size:13px;color:#666;margin-top:8px}
+
+      /* Toast */
+      .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:28px;background:#111;color:#fff;padding:10px 16px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+      .toast.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(-6px)}
+
+      /* animations */
+      .pulse{animation:pulse 1.6s infinite}
+      @keyframes pulse{0%{box-shadow:0 6px 18px rgba(37,211,102,0.12)}50%{box-shadow:0 18px 36px rgba(37,211,102,0.06)}100%{box-shadow:0 6px 18px rgba(37,211,102,0.12)}}
+
+      /* responsive */
+      @media (max-width:520px){
+        .container{padding:20px;border-radius:12px}
+        h1{font-size:18px}
+        .logo{width:86px;height:86px}
+        .cta{width:100%;font-size:16px;justify-content:center}
+        .actions{flex-direction:column}
+      }
     </style>
   </head>
   <body>
-    <div class="msg">
-      <strong>Redirecionando...</strong>
-      <p>Se o redirecionamento não funcionar automaticamente, <a href="grupowhatsapp.html">clique aqui</a>.</p>
+    <div class="container" role="main" aria-labelledby="pageTitle">
+      <div class="logo-wrap">
+        <!-- Recomendo substituir src pelo seu logo otimizado (webp/png). -->
+        <img class="logo" src="/mnt/data/WhatsApp Image 2025-11-13 at 14.52.03.jpeg" alt="Logo do grupo" loading="lazy">
+      </div>
+
+      <h1 id="pageTitle">GRUPO DE CUPONS E PROMOÇÕES 100% GRATUITO</h1>
+      <p class="lead">Lançamos nosso grupo de alertas de promoções <strong>ABSURDAS</strong> — é 100% gratuito para quem conseguir uma vaga.</p>
+      <p class="attention"><strong>Atenção:</strong> Vagas Limitadas. Garanta a sua agora 👇</p>
+
+      <!-- Primary CTA: chama função JS que tenta abrir o app e registra evento -->
+      <button id="joinBtn" class="cta pulse" aria-label="Entrar no grupo do WhatsApp" title="Abrir convite no WhatsApp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.9 11.9 0 0012 .5C5.65.5.99 5.16.99 11.5c0 2.03.53 3.93 1.46 5.6L0 23.5l6.6-1.73A11.9 11.9 0 0012 23.5c6.35 0 11.01-4.66 11.01-11 0-2.95-1.15-5.66-3.49-7.02z" fill="#fff" opacity=".06"/><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.1-.472-.149-.672.149-.199.297-.772.966-.945 1.166-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.472-.885-.788-1.482-1.761-1.655-2.059-.173-.297-.018-.458.131-.607.134-.133.298-.347.447-.52.149-.173.199-.297.298-.495.099-.199.05-.372-.025-.52-.075-.149-.672-1.618-.921-2.215-.243-.58-.49-.502-.672-.512l-.573-.01c-.199 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.199 2.09 3.2 5.063 4.487 0 0 .267.112.48.167.201.05.392.074.563.049.199-.025 1.758-.718 2.006-.998.248-.28.248-.52.173-.67-.074-.149-.272-.248-.57-.397z" fill="#fff"/></svg>
+        <span id="ctaText">ENTRAR NO GRUPO</span>
+      </button>
+
+      <div class="actions" style="margin-top:14px;">
+        <button id="copyBtn" class="btn-ghost" aria-label="Copiar link do convite">Copiar link</button>
+        <a id="manualLink" class="btn-ghost" href="#" target="_blank" rel="noopener noreferrer">Abrir no navegador</a>
+      </div>
+
+      <div id="helper" class="helper" aria-hidden="true"></div>
     </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">Link copiado</div>
+
     <script>
-      // Fallback: caso o meta refresh seja bloqueado
       (function(){
-        setTimeout(function(){
-          if(location.pathname.endsWith('/')){
-            location.replace('grupowhatsapp.html');
+        // Config
+        const INVITE = 'https://chat.whatsapp.com/GRbDLb2W4006s7DWgH3Hyk';
+
+        // Utils
+        function isMobile(){
+          return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) && !/Windows Phone/i.test(navigator.userAgent);
+        }
+
+        function showToast(msg, time = 2200){
+          const t = document.getElementById('toast');
+          t.textContent = msg; t.classList.add('show');
+          clearTimeout(t._timer);
+          t._timer = setTimeout(()=> t.classList.remove('show'), time);
+        }
+
+        // Ação principal: tenta abrir no app (mobile) e faz fallback
+        function handleJoin(){
+          try{
+            if(isMobile()){
+              // on mobile, opening the chat.whatsapp.com link usually opens the WhatsApp app
+              window.location.href = INVITE;
+            } else {
+              // on desktop, prefer web.whatsapp.com with the invite link in new tab
+              window.open(INVITE, '_blank', 'noopener');
+            }
+          }catch(e){
+            window.open(INVITE, '_blank', 'noopener');
           }
-        }, 300);
+        }
+
+        // Copy link
+        async function copyInvite(){
+          try{
+            await navigator.clipboard.writeText(INVITE);
+            showToast('Link copiado para a área de transferência');
+          }catch(e){
+            showToast('Não foi possível copiar automaticamente — selecione e copie manualmente');
+          }
+        }
+
+        // Adjust UI according to device without prompting the user
+        function adaptUI(){
+          const ctaText = document.getElementById('ctaText');
+          const manualLink = document.getElementById('manualLink');
+          const helper = document.getElementById('helper');
+
+          if(isMobile()){
+            ctaText.textContent = 'ABRIR NO WHATSAPP';
+            manualLink.href = INVITE;
+            manualLink.textContent = 'Abrir no app';
+            helper.textContent = 'Abrirá o app do WhatsApp no seu celular.';
+          } else {
+            ctaText.textContent = 'ABRIR NO WHATSAPP WEB';
+            // For desktop, open the invite in web.whatsapp.com (chat.whatsapp.com works too)
+            manualLink.href = INVITE;
+            manualLink.textContent = 'Abrir no WhatsApp Web';
+            helper.textContent = 'No desktop o WhatsApp Web será aberto (faça login se necessário).';
+          }
+        }
+
+        // Bind events
+        document.addEventListener('DOMContentLoaded', function(){
+          const joinBtn = document.getElementById('joinBtn');
+          const copyBtn = document.getElementById('copyBtn');
+
+          adaptUI();
+
+          joinBtn.addEventListener('click', function(e){
+            e.preventDefault();
+            joinBtn.classList.remove('pulse');
+            setTimeout(()=> joinBtn.classList.add('pulse'), 800);
+            handleJoin();
+          });
+
+          copyBtn.addEventListener('click', function(e){ e.preventDefault(); copyInvite(); });
+
+          // Accessibility: allow Enter/Space to trigger the button
+          joinBtn.addEventListener('keyup', function(e){ if(e.key === 'Enter' || e.key === ' ') handleJoin(); });
+
+          // responsive: adapt if viewport changes (e.g., rotate device)
+          window.addEventListener('resize', adaptUI);
+        });
       })();
     </script>
+    <noscript>
+      <div style="position:fixed;left:12px;right:12px;bottom:12px;background:#fffbeb;padding:8px;border-radius:8px;border:1px solid #f5e1a4;color:#8a6d00;text-align:center">Ative o JavaScript para que o botão abra o convite corretamente. Você pode usar este link: <a href="https://chat.whatsapp.com/GRbDLb2W4006s7DWgH3Hyk">Abrir convite</a></div>
+    </noscript>
   </body>
 </html>
