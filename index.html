@@ -92,51 +92,33 @@
         </svg>
       </div>
 
-      <h1 id="pageTitle">GRUPO DE CUPONS E PROMOÇÕES 100% GRATUITO</h1>
-      <p class="lead">Lançamos nosso grupo de alertas de promoções <strong>ABSURDAS</strong> — é 100% gratuito para quem conseguir uma vaga.</p>
-      <p class="attention"><strong>Atenção:</strong> Vagas Limitadas. Garanta a sua agora 👇</p>
+      <h1 id="pageTitle">GRUPO DE CUPONS E PROMOÇÕES</h1>
+      <p class="lead">Entre no nosso grupo do WhatsApp para receber ofertas em primeira mão.</p>
 
-      <!-- Primary CTA: chama função JS que tenta abrir o app e registra evento -->
-      <button id="joinBtn" class="cta pulse" aria-label="Entrar no grupo do WhatsApp" title="Abrir convite no WhatsApp">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.9 11.9 0 0012 .5C5.65.5.99 5.16.99 11.5c0 2.03.53 3.93 1.46 5.6L0 23.5l6.6-1.73A11.9 11.9 0 0012 23.5c6.35 0 11.01-4.66 11.01-11 0-2.95-1.15-5.66-3.49-7.02z" fill="#fff" opacity=".06"/><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.1-.472-.149-.672.149-.199.297-.772.966-.945 1.166-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.472-.885-.788-1.482-1.761-1.655-2.059-.173-.297-.018-.458.131-.607.134-.133.298-.347.447-.52.149-.173.199-.297.298-.495.099-.199.05-.372-.025-.52-.075-.149-.672-1.618-.921-2.215-.243-.58-.49-.502-.672-.512l-.573-.01c-.199 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.199 2.09 3.2 5.063 4.487 0 0 .267.112.48.167.201.05.392.074.563.049.199-.025 1.758-.718 2.006-.998.248-.28.248-.52.173-.67-.074-.149-.272-.248-.57-.397z" fill="#fff"/></svg>
-        <span id="ctaText">ENTRAR NO GRUPO</span>
-      </button>
-
-      <div class="actions" style="margin-top:14px;">
-        <button id="copyBtn" class="btn-ghost" aria-label="Copiar link do convite">Copiar link</button>
-        <a id="manualLink" class="btn-ghost" href="#" target="_blank" rel="noopener noreferrer">Abrir no navegador</a>
+      <!-- Primary CTA em destaque central (único botão) -->
+      <div style="margin-top:18px;display:flex;justify-content:center;">
+        <button id="joinBtn" class="cta pulse" aria-label="Entrar no grupo do WhatsApp" title="Abrir convite no WhatsApp">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.9 11.9 0 0012 .5C5.65.5.99 5.16.99 11.5c0 2.03.53 3.93 1.46 5.6L0 23.5l6.6-1.73A11.9 11.9 0 0012 23.5c6.35 0 11.01-4.66 11.01-11 0-2.95-1.15-5.66-3.49-7.02z" fill="#fff" opacity=".06"/><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.1-.472-.149-.672.149-.199.297-.772.966-.945 1.166-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.472-.885-.788-1.482-1.761-1.655-2.059-.173-.297-.018-.458.131-.607.134-.133.298-.347.447-.52.149-.173.199-.297.298-.495.099-.199.05-.372-.025-.52-.075-.149-.672-1.618-.921-2.215-.243-.58-.49-.502-.672-.512l-.573-.01c-.199 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.199 2.09 3.2 5.063 4.487 0 0 .267.112.48.167.201.05.392.074.563.049.199-.025 1.758-.718 2.006-.998.248-.28.248-.52.173-.67-.074-.149-.272-.248-.57-.397z" fill="#fff"/></svg>
+          <span id="ctaText">ENTRAR AGORA</span>
+        </button>
       </div>
-
-      <div id="helper" class="helper" aria-hidden="true"></div>
     </div>
-
-    <div id="toast" class="toast" role="status" aria-live="polite">Link copiado</div>
 
     <script>
       (function(){
-        // Config
         const INVITE = 'https://chat.whatsapp.com/GRbDLb2W4006s7DWgH3Hyk';
 
-        // Utils
         function isMobile(){
           return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) && !/Windows Phone/i.test(navigator.userAgent);
         }
 
-        function showToast(msg, time = 2200){
-          const t = document.getElementById('toast');
-          t.textContent = msg; t.classList.add('show');
-          clearTimeout(t._timer);
-          t._timer = setTimeout(()=> t.classList.remove('show'), time);
-        }
-
-        // Ação principal: tenta abrir no app (mobile) e faz fallback
         function handleJoin(){
           try{
             if(isMobile()){
-              // on mobile, opening the chat.whatsapp.com link usually opens the WhatsApp app
+              // Mobile: abrir diretamente (provavel que abra o app)
               window.location.href = INVITE;
             } else {
-              // on desktop, prefer web.whatsapp.com with the invite link in new tab
+              // Desktop: abrir em nova aba (WhatsApp Web)
               window.open(INVITE, '_blank', 'noopener');
             }
           }catch(e){
@@ -144,62 +126,18 @@
           }
         }
 
-        // Copy link
-        async function copyInvite(){
-          try{
-            await navigator.clipboard.writeText(INVITE);
-            showToast('Link copiado para a área de transferência');
-          }catch(e){
-            showToast('Não foi possível copiar automaticamente — selecione e copie manualmente');
-          }
-        }
-
-        // Adjust UI according to device without prompting the user
-        function adaptUI(){
-          const ctaText = document.getElementById('ctaText');
-          const manualLink = document.getElementById('manualLink');
-          const helper = document.getElementById('helper');
-
-          if(isMobile()){
-            ctaText.textContent = 'ABRIR NO WHATSAPP';
-            manualLink.href = INVITE;
-            manualLink.textContent = 'Abrir no app';
-            helper.textContent = 'Abrirá o app do WhatsApp no seu celular.';
-          } else {
-            ctaText.textContent = 'ABRIR NO WHATSAPP WEB';
-            // For desktop, open the invite in web.whatsapp.com (chat.whatsapp.com works too)
-            manualLink.href = INVITE;
-            manualLink.textContent = 'Abrir no WhatsApp Web';
-            helper.textContent = 'No desktop o WhatsApp Web será aberto (faça login se necessário).';
-          }
-        }
-
-        // Bind events
         document.addEventListener('DOMContentLoaded', function(){
           const joinBtn = document.getElementById('joinBtn');
-          const copyBtn = document.getElementById('copyBtn');
-
-          adaptUI();
-
           joinBtn.addEventListener('click', function(e){
             e.preventDefault();
-            joinBtn.classList.remove('pulse');
-            setTimeout(()=> joinBtn.classList.add('pulse'), 800);
             handleJoin();
           });
-
-          copyBtn.addEventListener('click', function(e){ e.preventDefault(); copyInvite(); });
-
-          // Accessibility: allow Enter/Space to trigger the button
           joinBtn.addEventListener('keyup', function(e){ if(e.key === 'Enter' || e.key === ' ') handleJoin(); });
-
-          // responsive: adapt if viewport changes (e.g., rotate device)
-          window.addEventListener('resize', adaptUI);
         });
       })();
     </script>
     <noscript>
-      <div style="position:fixed;left:12px;right:12px;bottom:12px;background:#fffbeb;padding:8px;border-radius:8px;border:1px solid #f5e1a4;color:#8a6d00;text-align:center">Ative o JavaScript para que o botão abra o convite corretamente. Você pode usar este link: <a href="https://chat.whatsapp.com/GRbDLb2W4006s7DWgH3Hyk">Abrir convite</a></div>
+      <div style="position:fixed;left:12px;right:12px;bottom:12px;background:#fffbeb;padding:8px;border-radius:8px;border:1px solid #f5e1a4;color:#8a6d00;text-align:center">Ative o JavaScript para que o botão abra o convite corretamente.</div>
     </noscript>
   </body>
 </html>
