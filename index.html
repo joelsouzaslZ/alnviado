@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Entrando — Grupo WhatsApp</title>
+    <meta name="robots" content="noindex">
+    <!-- Redireciona imediatamente para o arquivo principal -->
+    <meta http-equiv="refresh" content="0; url=grupowhatsapp.html">
+    <style>
+      body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#f6f4ef}
+      .msg{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.06);max-width:420px;text-align:center}
+    </style>
+  </head>
+  <body>
+    <div class="msg">
+      <strong>Redirecionando...</strong>
+      <p>Se o redirecionamento não funcionar automaticamente, <a href="grupowhatsapp.html">clique aqui</a>.</p>
+    </div>
+    <script>
+      // Fallback: caso o meta refresh seja bloqueado
+      (function(){
+        setTimeout(function(){
+          if(location.pathname.endsWith('/')){
+            location.replace('grupowhatsapp.html');
+          }
+        }, 300);
+      })();
+    </script>
+  </body>
+</html>
